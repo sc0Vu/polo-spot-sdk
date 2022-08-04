@@ -86,8 +86,7 @@ function post(url, path, param = {}) {
 
 
 function del(url, path, param = {}, apiKey, secretKey) {
-    const sign = new Sign('DELETE', path, param, apiKey, secretKey)
-    const headers = sign.getSign()
+    const headers = getHeader('DELETE', path, param) 
     return axios.delete(url + path, {data: param, headers: headers})
         .then(res => console.log(res.data))
         .catch(e => console.error(e))
